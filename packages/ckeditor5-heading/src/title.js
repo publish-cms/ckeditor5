@@ -155,6 +155,8 @@ export default class Title extends Plugin {
 
 		data.downcastDispatcher.conversionApi.options = options;
 
+		data.downcastDispatcher.conversionApi.options = options;
+
 		// Convert the entire root to view.
 		data.mapper.clearBindings();
 		data.mapper.bindElements( root, viewDocumentFragment );

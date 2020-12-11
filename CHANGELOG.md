@@ -1637,12 +1637,12 @@ There were also some important bug fixes:
 * [Multiple issues with the lists and list styles](https://github.com/ckeditor/ckeditor5/issues?q=is%3Aissue+milestone%3A%22iteration+38%22+-label%3Atype%3Adocs+-label%3Atype%3Atask+sort%3Aupdated-desc+label%3Apackage%3Alist).
 * [Follow-ups to the HMTL embed feature](https://github.com/ckeditor/ckeditor5/issues?q=is%3Aissue+milestone%3A%22iteration+38%22+-label%3Atype%3Adocs+-label%3Atype%3Atask+sort%3Aupdated-desc+label%3Apackage%3Ahtml-embed) introduced in the previous release.
 * [Pasting plain text on link no longer breaks the link](https://github.com/ckeditor/ckeditor5/issues/8158).
-* [Select All does select all now](https://github.com/ckeditor/ckeditor5/issues/7978) - including tables and block quotes.
+* [Select All does select all now](https://github.com/ckeditor/ckeditor5/issues/7978) - including tables and blockquotes.
 * [The `supportAllValues` option in the font feature now works with nested elements](https://github.com/ckeditor/ckeditor5/issues/8233).
 
 Please note that there are some **major breaking changes** in this release. Be sure to review them before upgrading.
 
-Read more in the blog post: https://ckeditor.com/blog/CKEditor-5-v24.0.0-with-multiline-toolbar-and-accessible-input-labels/
+<!-- TODO: Add a link to the blog post. -->
 
 ### Collaboration features
 
