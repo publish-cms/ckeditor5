@@ -8,7 +8,9 @@
  */
 
 import InputTextView from '../inputtext/inputtextview';
-import { createDropdown } from '../dropdown/utils';
+import {
+	createDropdown
+} from '../dropdown/utils';
 
 /**
  * A helper for creating labeled inputs.
@@ -45,6 +47,7 @@ export function createLabeledInputText( labeledFieldView, viewUid, statusUid ) {
 
 	inputView.bind( 'isReadOnly' ).to( labeledFieldView, 'isEnabled', value => !value );
 	inputView.bind( 'hasError' ).to( labeledFieldView, 'errorText', value => !!value );
+	inputView.bind( 'placeholder' ).to( labeledFieldView, 'placeholder', value => value );
 
 	inputView.on( 'input', () => {
 		// UX: Make the error text disappear and disable the error indicator as the user
