@@ -40,7 +40,8 @@ export default class HtmlEmbedUI extends Plugin {
 			view.set( {
 				label: t( 'Insert HTML' ),
 				icon: htmlEmbedIcon,
-				tooltip: true
+				tooltip: true,
+				class: 'icon-white'
 			} );
 
 			view.bind( 'isEnabled' ).to( command, 'isEnabled' );

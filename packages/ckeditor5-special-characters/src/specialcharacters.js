@@ -7,10 +7,12 @@
  * @module special-characters/specialcharacters
  */
 
-import { Plugin } from 'ckeditor5/src/core';
-import { Typing } from 'ckeditor5/src/typing';
-import { createDropdown } from 'ckeditor5/src/ui';
-import { CKEditorError } from 'ckeditor5/src/utils';
+import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import Typing from '@ckeditor/ckeditor5-typing/src/typing';
+import {
+	createDropdown
+} from '@ckeditor/ckeditor5-ui/src/dropdown/utils';
+import CKEditorError from '@ckeditor/ckeditor5-utils/src/ckeditorerror';
 import SpecialCharactersNavigationView from './ui/specialcharactersnavigationview';
 import CharacterGridView from './ui/charactergridview';
 import CharacterInfoView from './ui/characterinfoview';
@@ -83,14 +85,16 @@ export default class SpecialCharacters extends Plugin {
 				label: t( 'Special characters' ),
 				icon: specialCharactersIcon,
 				tooltip: true,
-				class: "hidden__arrow"
+				class: 'hidden__arrow icon-white'
 			} );
 
 			dropdownView.bind( 'isEnabled' ).to( inputCommand );
 
 			// Insert a special character when a tile was clicked.
 			dropdownView.on( 'execute', ( evt, data ) => {
-				editor.execute( 'input', { text: data.character } );
+				editor.execute( 'input', {
+					text: data.character
+				} );
 				editor.editing.view.focus();
 			} );
 
@@ -243,7 +247,11 @@ export default class SpecialCharacters extends Plugin {
 		// Set the initial content of the special characters grid.
 		this._updateGrid( navigationView.currentGroupName, gridView );
 
-		return { navigationView, gridView, infoView };
+		return {
+			navigationView,
+			gridView,
+			infoView
+		};
 	}
 }
 

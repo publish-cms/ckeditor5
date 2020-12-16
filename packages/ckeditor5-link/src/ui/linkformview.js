@@ -70,7 +70,6 @@ export default class LinkFormView extends View {
 		 * @member {module:ui/labeledfield/labeledfieldview~LabeledFieldView}
 		 */
 		this.urlInputView = this._createUrlInput();
-		console.log( this.urlInputView );
 
 		/**
 		 * The Save button view.

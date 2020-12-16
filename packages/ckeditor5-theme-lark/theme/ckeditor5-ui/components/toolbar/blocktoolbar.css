@@ -12,3 +12,6 @@
 	color: var(--ck-color-block-toolbar-button);
 	font-size: var(--ck-block-toolbar-size);
 }
+.icon-white svg.ck-button__icon {
+	color: var(--ck-color-base-background);
+}
