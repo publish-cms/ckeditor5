@@ -209,7 +209,9 @@ export default class ContextualBalloon extends Plugin {
 
 		// If new stack is added, creates it and show view from this stack.
 		if ( !this._idToStack.has( stackId ) ) {
-			this._idToStack.set( stackId, new Map( [ [ data.view, data ] ] ) );
+			this._idToStack.set( stackId, new Map( [
+				[ data.view, data ]
+			] ) );
 			this._viewToStack.set( data.view, this._idToStack.get( stackId ) );
 			this._numberOfStacks = this._idToStack.size;
 
@@ -407,7 +409,9 @@ export default class ContextualBalloon extends Plugin {
 		} );
 
 		// Update balloon position after toggling navigation.
-		view.on( 'change:isNavigationVisible', () => ( this.updatePosition() ), { priority: 'low' } );
+		view.on( 'change:isNavigationVisible', () => ( this.updatePosition() ), {
+			priority: 'low'
+		} );
 
 		// Update stacks counter value.
 		view.bind( 'counter' ).to( this, 'visibleView', this, '_numberOfStacks', ( visibleView, numberOfStacks ) => {
@@ -474,7 +478,12 @@ export default class ContextualBalloon extends Plugin {
 	 * @param {String} [data.balloonClassName=''] Additional class name which will be added to the {@link #view balloon}.
 	 * @param {Boolean} [data.withArrow=true] Whether the {@link #view balloon} should be rendered with an arrow.
 	 */
-	_showView( { view, balloonClassName = '', withArrow = true, singleViewMode = false } ) {
+	_showView( {
+		view,
+		balloonClassName = '',
+		withArrow = true,
+		singleViewMode = false
+	} ) {
 		this.view.class = balloonClassName;
 		this.view.withArrow = withArrow;
 
@@ -636,6 +645,40 @@ class RotatorView extends View {
 	showView( view ) {
 		this.hideView();
 		this.content.add( view );
+		// ThoArrow --- 16/12/2020 --- Hidden icon disabled
+		// eslint-disable-next-line no-undef
+		document.querySelectorAll( '.ck-toolbar__items' ).forEach( doc => {
+			if ( doc && doc.childElementCount ) {
+				for ( let i = 0; i < doc.childElementCount; i++ ) {
+					const element = doc.children[ i ];
+					if ( element.className.includes( 'ck-toolbar__separator' ) ) {
+						let b = false;
+						let allButtonDisabled = true;
+						let j = i;
+						while ( !b ) {
+							j++;
+							const elementNext = doc.children[ j ];
+							if ( !elementNext ) {
+								return;
+							}
+							if ( j < doc.childElementCount || elementNext.className.includes( 'ck-toolbar__separator' ) ) {
+								b = true;
+							}
+							if ( !elementNext.className.includes( 'ck-toolbar__separator' ) &&
+								!elementNext.className.includes( 'ck-disabled' ) ) {
+								allButtonDisabled = false;
+							}
+						}
+						if ( allButtonDisabled ) {
+							element.classList.add( 'hidden' );
+						} else {
+							element.classList.remove( 'hidden' );
+						}
+					}
+				}
+			}
+		} );
+		// ThoArrow --- 16/12/2020 --- Hidden icon disabled
 	}
 
 	/**
@@ -753,7 +796,9 @@ class FakePanelsView extends View {
 		while ( number-- ) {
 			const view = new View();
 
-			view.setTemplate( { tag: 'div' } );
+			view.setTemplate( {
+				tag: 'div'
+			} );
 
 			this.content.add( view );
 			this.registerChild( view );
@@ -775,10 +820,21 @@ class FakePanelsView extends View {
 	// Updates coordinates of fake panels.
 	updatePosition() {
 		if ( this.numberOfPanels ) {
-			const { top, left } = this._balloonPanelView;
-			const { width, height } = new Rect( this._balloonPanelView.element );
+			const {
+				top,
+				left
+			} = this._balloonPanelView;
+			const {
+				width,
+				height
+			} = new Rect( this._balloonPanelView.element );
 
-			Object.assign( this, { top, left, width, height } );
+			Object.assign( this, {
+				top,
+				left,
+				width,
+				height
+			} );
 		}
 	}
 }

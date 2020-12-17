@@ -43,6 +43,7 @@ export default class ParagraphButtonUI extends Plugin {
 			view.isToggleable = true;
 			view.bind( 'isEnabled' ).to( command );
 			view.bind( 'isOn' ).to( command, 'value' );
+			view.class = 'custom-icon-paragraph';
 
 			view.on( 'execute', () => {
 				editor.execute( 'paragraph' );
