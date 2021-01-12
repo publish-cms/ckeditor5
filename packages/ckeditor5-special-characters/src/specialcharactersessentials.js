@@ -10,7 +10,7 @@
 import { Plugin } from 'ckeditor5/src/core';
 
 import SpecialCharactersCurrency from './specialcharacterscurrency';
-import SpecialCharactersMathematical from './specialcharactersmathematical';
+// import SpecialCharactersMathematical from './specialcharactersmathematical';
 import SpecialCharactersArrows from './specialcharactersarrows';
 import SpecialCharactersLatin from './specialcharacterslatin';
 import SpecialCharactersText from './specialcharacterstext';
@@ -35,7 +35,7 @@ export default class SpecialCharactersEssentials extends Plugin {
 		return [
 			SpecialCharactersCurrency,
 			SpecialCharactersText,
-			SpecialCharactersMathematical,
+			// SpecialCharactersMathematical,
 			SpecialCharactersArrows,
 			SpecialCharactersLatin
 		];
