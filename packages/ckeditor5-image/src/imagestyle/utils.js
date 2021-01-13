@@ -14,8 +14,15 @@ const {
 	objectFullWidth,
 	objectInline,
 	objectLeft,	objectRight, objectCenter,
-	objectBlockLeft, objectBlockRight
+	objectBlockLeft, objectBlockRight,
+	objectSizeWide,	objectSizeFullOver
 } = icons;
+// import fullWidthIcon from '@ckeditor/ckeditor5-core/theme/icons/object-full-width.svg';
+// import leftIcon from '@ckeditor/ckeditor5-core/theme/icons/object-left.svg';
+// import centerIcon from '@ckeditor/ckeditor5-core/theme/icons/object-center.svg';
+// import rightIcon from '@ckeditor/ckeditor5-core/theme/icons/object-right.svg';
+// import wideIcon from '@ckeditor/ckeditor5-core/theme/icons/object-wide.svg';
+// import fulloverIcon from '@ckeditor/ckeditor5-core/theme/icons/object-full-over.svg';
 
 /**
  * Default image style options provided by the plugin that can be referred in the {@link module:image/image~ImageConfig#styles}
@@ -109,7 +116,24 @@ const DEFAULT_OPTIONS = {
 		icon: objectRight,
 		modelElements: [ 'imageBlock' ],
 		className: 'image-style-side'
+	},
+
+	wide: {
+		name: 'wide',
+		title: 'Wide image',
+		// title: 'Wide image',
+		icon: objectSizeWide,
+		className: 'image-style-over over'
+	},
+
+	fullOver: {
+		name: 'fullOver',
+		title: 'Over full image',
+		// title: 'Full Over image',
+		icon: objectSizeFullOver,
+		className: 'image-style-over-full over-full'
 	}
+
 };
 
 /**
@@ -130,7 +154,9 @@ const DEFAULT_ICONS = {
 	center: objectCenter,
 	inlineLeft: objectLeft,
 	inlineRight: objectRight,
-	inline: objectInline
+	inline: objectInline,
+	wide: objectSizeWide,
+	fullOver: objectSizeFullOver
 };
 
 /**

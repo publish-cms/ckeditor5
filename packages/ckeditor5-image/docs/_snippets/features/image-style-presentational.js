@@ -12,6 +12,13 @@ ClassicEditor
 		removePlugins: [ 'LinkImage', 'AutoImage', 'imageCaption' ],
 		image: {
 			resizeUnit: '%',
+			styles: [
+				'alignLeft',
+				'alignCenter',
+				'alignRight',
+				'wide',
+				'fullOver'
+			],
 			resizeOptions: [
 				{
 					name: 'resizeImage:original',
@@ -30,10 +37,15 @@ ClassicEditor
 				}
 			],
 			toolbar: [
-				'imageStyle:inline',
-				'imageStyle:wrapText',
-				'imageStyle:breakText',
-				'resizeImage'
+				'imageStyle:alignLeft',
+				'imageStyle:alignCenter',
+				'imageStyle:alignRight',
+				'imageStyle:wide',
+				'imageStyle:fullOver',
+				'|',
+				'resizeImage',
+				'|',
+				'imageTextAlternative'
 			]
 		},
 		ui: {

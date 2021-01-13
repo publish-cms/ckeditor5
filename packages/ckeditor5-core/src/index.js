@@ -52,6 +52,8 @@ import objectSizeFull from './../theme/icons/object-size-full.svg';
 import objectSizeLarge from './../theme/icons/object-size-large.svg';
 import objectSizeSmall from './../theme/icons/object-size-small.svg';
 import objectSizeMedium from './../theme/icons/object-size-medium.svg';
+import objectSizeWide from './../theme/icons/object-wide.svg';
+import objectSizeFullOver from './../theme/icons/object-full-over.svg';
 
 import pencil from './../theme/icons/pencil.svg';
 import pilcrow from './../theme/icons/pilcrow.svg';
@@ -87,6 +89,8 @@ export const icons = {
 	objectSizeLarge,
 	objectSizeSmall,
 	objectSizeMedium,
+	objectSizeWide,
+	objectSizeFullOver,
 
 	pencil,
 	pilcrow,
