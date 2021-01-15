@@ -57,7 +57,7 @@ const TRANSFORMATIONS = {
 const TRANSFORMATION_GROUPS = {
 	symbols: [ 'copyright', 'registeredTrademark', 'trademark' ],
 	mathematical: [
-		'oneHalf', 'oneThird', 'twoThirds', 'oneForth', 'threeQuarters',
+		// 'oneHalf', 'oneThird', 'twoThirds', 'oneForth', 'threeQuarters',
 		'lessThanOrEqual', 'greaterThanOrEqual', 'notEqual',
 		'arrowLeft', 'arrowRight'
 	],
