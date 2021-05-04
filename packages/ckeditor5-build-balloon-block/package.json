@@ -75,5 +75,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "preversion": "npm run build"
+  },
+  "dependencies": {
+    "ckeditor5-letter-case": "^1.0.3"
   }
 }

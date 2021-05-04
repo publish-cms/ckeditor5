@@ -1,0 +1,66 @@
+{
+  "name": "@ktcity/ckeditor5-toc",
+  "version": "1.0.0",
+  "description": "Table of content feature for CKEditor 5.",
+  "keywords": [
+    "ckeditor5",
+    "ckeditor5-feature",
+    "ckeditor",
+    "ckeditor 5",
+    "toc",
+    "table of content"
+  ],
+  "peerDependencies": {
+    "@ckeditor/ckeditor5-core": "24.0.0",
+    "@ckeditor/ckeditor5-engine": "24.0.0",
+    "@ckeditor/ckeditor5-ui": "24.0.0"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-basic-styles": "24.0.0",
+    "@ckeditor/ckeditor5-clipboard": "24.0.0",
+    "@ckeditor/ckeditor5-editor-classic": "24.0.0",
+    "@ckeditor/ckeditor5-enter": "24.0.0",
+    "@ckeditor/ckeditor5-essentials": "24.0.0",
+    "@ckeditor/ckeditor5-heading": "24.0.0",
+    "@ckeditor/ckeditor5-list": "24.0.0",
+    "@ckeditor/ckeditor5-paragraph": "24.0.0",
+    "@ckeditor/ckeditor5-typing": "24.0.0",
+    "@ckeditor/ckeditor5-undo": "24.0.0",
+    "eslint": "^4.15.0",
+    "eslint-config-ckeditor5": "^1.0.7",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=3.0.0"
+  },
+  "author": "ThoArrown",
+  "license": "(GPL-2.0-or-later)",
+  "bugs": "https://github.com/ktcity/ckeditor5-toc/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ktcity/ckeditor5-toc.git"
+  },
+  "files": [
+    "lang",
+    "src",
+    "theme"
+  ],
+  "scripts": {
+    "lint": "eslint --quiet '**/*.js'",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --quiet"
+    ]
+  },
+  "eslintIgnore": [
+    "src/lib/**",
+    "packages/**"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}
