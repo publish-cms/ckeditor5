@@ -25,10 +25,11 @@
 .ck button.ck-block-toolbar-button:hover > svg > .st0 {
 	fill: #57656e;
 }
-button.ck-disabled,
-.hidden {
+
+button.ck-disabled {
 	display: none !important;
 }
+
 .hidden__arrow > .ck-dropdown__arrow {
 	display: none;
 }
