@@ -20,7 +20,7 @@ module.exports = {
 		dllPackages
 	},
 	rules: {
-		'ckeditor5-rules/ckeditor-imports': 'error'
+		'ckeditor5-rules/ckeditor-imports': 'off'
 	},
 	overrides: [
 		{

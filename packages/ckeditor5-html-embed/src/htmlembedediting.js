@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-undef */
 /**
  * @license Copyright (c) 2003-2021, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
@@ -15,17 +13,6 @@ import { toWidget } from 'ckeditor5/src/widget';
 import { logWarning, createElement } from 'ckeditor5/src/utils';
 
 import HtmlEmbedCommand from './htmlembedcommand';
-// import InsertHtmlEmbedCommand from './inserthtmlembedcommand';
-// import UpdateHtmlEmbedCommand from './updatehtmlembedcommand';
-// import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-
-// import createElement from '@ckeditor/ckeditor5-utils/src/dom/createelement';
-
-// import pencilIcon from '@ckeditor/ckeditor5-core/theme/icons/pencil.svg';
-// import checkIcon from '@ckeditor/ckeditor5-core/theme/icons/check.svg';
-// import cancelIcon from '@ckeditor/ckeditor5-core/theme/icons/cancel.svg';
-import cancelIcon from '@ckeditor/ckeditor5-html-embed/theme/icons/cancel.svg';
-import checkIcon from '@ckeditor/ckeditor5-html-embed/theme/icons/save.svg';
 
 import '../theme/htmlembed.css';
 
@@ -377,8 +364,7 @@ export default class HtmlEmbedEditing extends Plugin {
 			editor,
 			domDocument,
 			state,
-			props,
-			domElement
+			props
 		} ) {
 			const domButtonsWrapper = createElement( domDocument, 'div', {
 				class: 'raw-html-embed__buttons-wrapper'
