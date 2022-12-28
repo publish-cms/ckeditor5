@@ -11,7 +11,7 @@
 .ck.ck-block-toolbar-button svg {
 	width: 30px;
 	height: 30px;
-	color: #8080807a !important;
+	/* color: "#8080807a" !important; */
 }
 
 .ck button.ck-block-toolbar-button {
@@ -22,13 +22,7 @@
 	cursor: pointer;
 }
 
-.ck button.ck-block-toolbar-button:hover > svg > .st0 {
-	fill: #57656e;
-}
-button.ck-disabled,
-.hidden {
-	display: none !important;
-}
-.hidden__arrow > .ck-dropdown__arrow {
-	display: none;
-}
+/* .ck button.ck-block-toolbar-button:hover > svg > .st0 {
+	fill: "#57656e";
+} */
+

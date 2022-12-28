@@ -21,10 +21,10 @@ module.exports = {
 
 	output: {
 		// The name under which the editor will be exported.
-		library: 'BalloonEditor',
+		library: 'PublishCMSEditor',
 
 		path: path.resolve( __dirname, 'build' ),
-		filename: 'ckeditor.js',
+		filename: 'editor.js',
 		libraryTarget: 'umd',
 		libraryExport: 'default'
 	},

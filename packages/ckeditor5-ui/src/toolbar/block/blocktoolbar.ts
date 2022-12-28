@@ -501,7 +501,7 @@ export default class BlockToolbar extends Plugin {
 		if ( doc && doc.childElementCount ) {
 			for ( let i = 0; i < doc.childElementCount; i++ ) {
 				const element = doc.children[ i ];
-				if ( element.className.includes( 'ck-toolbar__separator' ) ) {
+				if ( element && element.className.includes( 'ck-toolbar__separator' ) ) {
 					let b = false;
 					let allButtonDisabled = true;
 					let j = i;
@@ -510,6 +510,8 @@ export default class BlockToolbar extends Plugin {
 						const elementNext = doc.children[ j ];
 						if (
 							j < doc.childElementCount ||
+							!elementNext ||
+							!elementNext.className ||
 							elementNext.className.includes(
 								'ck-toolbar__separator'
 							)
