@@ -107,7 +107,9 @@ export default class BlockToolbar extends Plugin {
 		 * @type {module:core/editor/editorconfig~EditorConfig#blockToolbar}
 		 * @private
 		 */
-		this._blockToolbarConfig = normalizeToolbarConfig( this.editor.config.get( 'blockToolbar' ) );
+		this._blockToolbarConfig = normalizeToolbarConfig(
+			this.editor.config.get( 'blockToolbar' )
+		);
 
 		/**
 		 * The toolbar view.
@@ -147,7 +149,10 @@ export default class BlockToolbar extends Plugin {
 		// Close the #panelView upon clicking outside of the plugin UI.
 		clickOutsideHandler( {
 			emitter: this.panelView,
-			contextElements: [ this.panelView.element!, this.buttonView.element! ],
+			contextElements: [
+				this.panelView.element!,
+				this.buttonView.element!
+			],
 			activator: () => this.panelView.isVisible,
 			callback: () => this._hidePanel()
 		} );
@@ -160,30 +165,51 @@ export default class BlockToolbar extends Plugin {
 		const editor = this.editor;
 
 		// Hides panel on a direct selection change.
-		this.listenTo<DocumentSelectionChangeRangeEvent>( editor.model.document.selection, 'change:range', ( evt, data ) => {
-			if ( data.directChange ) {
-				this._hidePanel();
+		this.listenTo<DocumentSelectionChangeRangeEvent>(
+			editor.model.document.selection,
+			'change:range',
+			( evt, data ) => {
+				if ( data.directChange ) {
+					this._hidePanel();
+				}
 			}
-		} );
+		);
 
-		this.listenTo<EditorUIUpdateEvent>( editor.ui, 'update', () => this._updateButton() );
+		this.listenTo<EditorUIUpdateEvent>( editor.ui, 'update', () =>
+			this._updateButton()
+		);
 		// `low` priority is used because of https://github.com/ckeditor/ckeditor5-core/issues/133.
-		this.listenTo<ObservableChangeEvent>( editor, 'change:isReadOnly', () => this._updateButton(), { priority: 'low' } );
-		this.listenTo<ObservableChangeEvent>( editor.ui.focusTracker, 'change:isFocused', () => this._updateButton() );
+		this.listenTo<ObservableChangeEvent>(
+			editor,
+			'change:isReadOnly',
+			() => this._updateButton(),
+			{ priority: 'low' }
+		);
+		this.listenTo<ObservableChangeEvent>(
+			editor.ui.focusTracker,
+			'change:isFocused',
+			() => this._updateButton()
+		);
 
 		// Reposition button on resize.
-		this.listenTo<ObservableChangeEvent<boolean>>( this.buttonView, 'change:isVisible', ( evt, name, isVisible ) => {
-			if ( isVisible ) {
-				// Keep correct position of button and panel on window#resize.
-				this.buttonView.listenTo( window, 'resize', () => this._updateButton() );
-			} else {
-				// Stop repositioning button when is hidden.
-				this.buttonView.stopListening( window, 'resize' );
+		this.listenTo<ObservableChangeEvent<boolean>>(
+			this.buttonView,
+			'change:isVisible',
+			( evt, name, isVisible ) => {
+				if ( isVisible ) {
+					// Keep correct position of button and panel on window#resize.
+					this.buttonView.listenTo( window, 'resize', () =>
+						this._updateButton()
+					);
+				} else {
+					// Stop repositioning button when is hidden.
+					this.buttonView.stopListening( window, 'resize' );
 
-				// Hide the panel when the button disappears.
-				this._hidePanel();
+					// Hide the panel when the button disappears.
+					this._hidePanel();
+				}
 			}
-		} );
+		);
 
 		// Register the toolbar so it becomes available for Alt+F10 and Esc navigation.
 		editor.ui.addToolbar( this.toolbarView, {
@@ -207,7 +233,13 @@ export default class BlockToolbar extends Plugin {
 
 		// Hide panel before executing each button in the panel.
 		for ( const item of this.toolbarView.items ) {
-			item.on<ButtonExecuteEvent>( 'execute', () => this._hidePanel( true ), { priority: 'high' } );
+			item.on<ButtonExecuteEvent>(
+				'execute',
+				() => this._hidePanel( true ),
+				{
+					priority: 'high'
+				}
+			);
 		}
 
 		if ( !config.shouldNotGroupWhenFull ) {
@@ -215,9 +247,12 @@ export default class BlockToolbar extends Plugin {
 				const editableElement = this.editor.ui.view.editable.element!;
 
 				// Set #toolbarView's max-width just after the initialization and update it on the editable resize.
-				this._resizeObserver = new ResizeObserver( editableElement, () => {
-					this.toolbarView.maxWidth = this._getToolbarMaxWidth();
-				} );
+				this._resizeObserver = new ResizeObserver(
+					editableElement,
+					() => {
+						this.toolbarView.maxWidth = this._getToolbarMaxWidth();
+					}
+				);
 			} );
 		}
 	}
@@ -246,7 +281,8 @@ export default class BlockToolbar extends Plugin {
 	 */
 	private _createToolbarView() {
 		const t = this.editor.locale.t;
-		const shouldGroupWhenFull = !this._blockToolbarConfig.shouldNotGroupWhenFull;
+		const shouldGroupWhenFull =
+			!this._blockToolbarConfig.shouldNotGroupWhenFull;
 		const toolbarView = new ToolbarView( this.editor.locale, {
 			shouldGroupWhenFull,
 			isFloating: true
@@ -325,7 +361,9 @@ export default class BlockToolbar extends Plugin {
 
 		// Bind the panelView observable properties to the buttonView.
 		buttonView.bind( 'isOn' ).to( this.panelView, 'isVisible' );
-		buttonView.bind( 'tooltip' ).to( this.panelView, 'isVisible', isVisible => !isVisible );
+		buttonView
+			.bind( 'tooltip' )
+			.to( this.panelView, 'isVisible', isVisible => !isVisible );
 
 		// Toggle the panelView upon buttonView#execute.
 		this.listenTo<ButtonExecuteEvent>( buttonView, 'execute', () => {
@@ -368,17 +406,26 @@ export default class BlockToolbar extends Plugin {
 		}
 
 		// Get the first selected block, button will be attached to this element.
-		const modelTarget = Array.from( model.document.selection.getSelectedBlocks() )[ 0 ];
+		const modelTarget = Array.from(
+			model.document.selection.getSelectedBlocks()
+		)[ 0 ];
 
 		// Hides the button when there is no enabled item in toolbar for the current block element.
-		if ( !modelTarget || Array.from( this.toolbarView.items ).every( ( item: any ) => !item.isEnabled ) ) {
+		if (
+			!modelTarget ||
+			Array.from( this.toolbarView.items ).every(
+				( item: any ) => !item.isEnabled
+			)
+		) {
 			this._hideButton();
 
 			return;
 		}
 
 		// Get DOM target element.
-		const domTarget = view.domConverter.mapViewToDom( editor.editing.mapper.toViewElement( modelTarget )! );
+		const domTarget = view.domConverter.mapViewToDom(
+			editor.editing.mapper.toViewElement( modelTarget )!
+		);
 
 		// Show block button.
 		this.buttonView.isVisible = true;
@@ -449,6 +496,44 @@ export default class BlockToolbar extends Plugin {
 			limiter: this.editor.ui.getEditableElement()
 		} );
 
+		// ThoArrow --- 03/11/2020 --- Hidden icon disabled
+		const doc = document.querySelector( '.ck-toolbar__items' );
+		if ( doc && doc.childElementCount ) {
+			for ( let i = 0; i < doc.childElementCount; i++ ) {
+				const element = doc.children[ i ];
+				if ( element.className.includes( 'ck-toolbar__separator' ) ) {
+					let b = false;
+					let allButtonDisabled = true;
+					let j = i;
+					while ( !b ) {
+						j++;
+						const elementNext = doc.children[ j ];
+						if (
+							j < doc.childElementCount ||
+							elementNext.className.includes(
+								'ck-toolbar__separator'
+							)
+						) {
+							b = true;
+						}
+						if (
+							elementNext &&
+							!elementNext.className.includes(
+								'ck-toolbar__separator'
+							) &&
+							!elementNext.className.includes( 'ck-disabled' )
+						) {
+							allButtonDisabled = false;
+						}
+					}
+					if ( allButtonDisabled ) {
+						element.classList.add( 'hidden' );
+					}
+				}
+			}
+		}
+		// ThoArrow --- End Here
+
 		if ( !wasVisible ) {
 			( this.toolbarView.items.get( 0 ) as any ).focus();
 		}
@@ -481,7 +566,9 @@ export default class BlockToolbar extends Plugin {
 		const contentPaddingTop = parseInt( contentStyles.paddingTop, 10 );
 		// When line height is not an integer then thread it as "normal".
 		// MDN says that 'normal' == ~1.2 on desktop browsers.
-		const contentLineHeight = parseInt( contentStyles.lineHeight, 10 ) || parseInt( contentStyles.fontSize, 10 ) * 1.2;
+		const contentLineHeight =
+			parseInt( contentStyles.lineHeight, 10 ) ||
+			parseInt( contentStyles.fontSize, 10 ) * 1.2;
 
 		const position = getOptimalPosition( {
 			element: this.buttonView.element!,
@@ -497,7 +584,10 @@ export default class BlockToolbar extends Plugin {
 					}
 
 					return {
-						top: contentRect.top + contentPaddingTop + ( contentLineHeight - buttonRect.height ) / 2,
+						top:
+							contentRect.top +
+							contentPaddingTop +
+							( contentLineHeight - buttonRect.height ) / 2,
 						left
 					};
 				}
@@ -520,7 +610,9 @@ export default class BlockToolbar extends Plugin {
 		const editableRect = new Rect( editableElement );
 		const buttonRect = new Rect( this.buttonView.element! );
 		const isRTL = this.editor.locale.uiLanguageDirection === 'rtl';
-		const offset = isRTL ? ( buttonRect.left - editableRect.right ) + buttonRect.width : editableRect.left - buttonRect.left;
+		const offset = isRTL ?
+			buttonRect.left - editableRect.right + buttonRect.width :
+			editableRect.left - buttonRect.left;
 
 		return toPx( editableRect.width + offset );
 	}
@@ -555,12 +647,12 @@ export default class BlockToolbar extends Plugin {
  *
  * @member {Array.<String>|Object} module:core/editor/editorconfig~EditorConfig#blockToolbar
  */
- declare module '@ckeditor/ckeditor5-core' {
+declare module '@ckeditor/ckeditor5-core' {
 	interface EditorConfig {
 		blockToolbar?: ToolbarConfig;
 	}
 
 	interface PluginsMap {
-		[ BlockToolbar.pluginName ]: BlockToolbar;
+		[BlockToolbar.pluginName]: BlockToolbar;
 	}
 }

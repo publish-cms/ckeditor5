@@ -8,7 +8,11 @@
  */
 
 import { Plugin, icons } from 'ckeditor5/src/core';
-import { ButtonView, createDropdown, addToolbarToDropdown } from 'ckeditor5/src/ui';
+import {
+	ButtonView,
+	createDropdown,
+	addToolbarToDropdown
+} from 'ckeditor5/src/ui';
 
 import { isSupported, normalizeAlignmentOptions } from './utils';
 
@@ -46,10 +50,10 @@ export default class AlignmentUI extends Plugin {
 		const t = this.editor.t;
 
 		return {
-			'left': t( 'Align left' ),
-			'right': t( 'Align right' ),
-			'center': t( 'Align center' ),
-			'justify': t( 'Justify' )
+			left: t( 'Align left' ),
+			right: t( 'Align right' ),
+			center: t( 'Align center' ),
+			justify: t( 'Justify' )
 		};
 	}
 
@@ -67,7 +71,9 @@ export default class AlignmentUI extends Plugin {
 		const editor = this.editor;
 		const componentFactory = editor.ui.componentFactory;
 		const t = editor.t;
-		const options = normalizeAlignmentOptions( editor.config.get( 'alignment.options' ) );
+		const options = normalizeAlignmentOptions(
+			editor.config.get( 'alignment.options' )
+		);
 
 		options
 			.map( option => option.name )
@@ -78,13 +84,18 @@ export default class AlignmentUI extends Plugin {
 			const dropdownView = createDropdown( locale );
 
 			// Add existing alignment buttons to dropdown's toolbar.
-			const buttons = options.map( option => componentFactory.create( `alignment:${ option.name }` ) );
-			addToolbarToDropdown( dropdownView, buttons, { enableActiveItemFocusOnDropdownOpen: true } );
+			const buttons = options.map( option =>
+				componentFactory.create( `alignment:${ option.name }` )
+			);
+			addToolbarToDropdown( dropdownView, buttons, {
+				enableActiveItemFocusOnDropdownOpen: true
+			} );
 
 			// Configure dropdown properties an behavior.
 			dropdownView.buttonView.set( {
 				label: t( 'Text alignment' ),
-				tooltip: true
+				tooltip: true,
+				class: 'hidden__arrow'
 			} );
 
 			dropdownView.toolbarView.isVertical = true;
@@ -97,24 +108,33 @@ export default class AlignmentUI extends Plugin {
 			} );
 
 			// The default icon depends on the direction of the content.
-			const defaultIcon = locale.contentLanguageDirection === 'rtl' ? iconsMap.get( 'right' ) : iconsMap.get( 'left' );
+			const defaultIcon =
+				locale.contentLanguageDirection === 'rtl' ?
+					iconsMap.get( 'right' ) :
+					iconsMap.get( 'left' );
 
 			// Change icon to reflect current selection's alignment.
-			dropdownView.buttonView.bind( 'icon' ).toMany( buttons, 'isOn', ( ...areActive ) => {
-				// Get the index of an active button.
-				const index = areActive.findIndex( value => value );
+			dropdownView.buttonView
+				.bind( 'icon' )
+				.toMany( buttons, 'isOn', ( ...areActive ) => {
+					// Get the index of an active button.
+					const index = areActive.findIndex( value => value );
 
-				// If none of the commands is active, display either defaultIcon or the first button's icon.
-				if ( index < 0 ) {
-					return defaultIcon;
-				}
+					// If none of the commands is active, display either defaultIcon or the first button's icon.
+					if ( index < 0 ) {
+						return defaultIcon;
+					}
 
-				// Return active button's icon.
-				return buttons[ index ].icon;
-			} );
+					// Return active button's icon.
+					return buttons[ index ].icon;
+				} );
 
 			// Enable button if any of the buttons is enabled.
-			dropdownView.bind( 'isEnabled' ).toMany( buttons, 'isEnabled', ( ...areEnabled ) => areEnabled.some( isEnabled => isEnabled ) );
+			dropdownView
+				.bind( 'isEnabled' )
+				.toMany( buttons, 'isEnabled', ( ...areEnabled ) =>
+					areEnabled.some( isEnabled => isEnabled )
+				);
 
 			// Focus the editable after executing the command.
 			// Overrides a default behaviour where the focus is moved to the dropdown button (#12125).
