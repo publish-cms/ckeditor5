@@ -15,7 +15,6 @@ import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
-import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
@@ -88,7 +87,8 @@ import Clipboard from '@ckeditor/ckeditor5-clipboard/src/clipboard';
 
 //
 import IndentBlock from '@ckeditor/ckeditor5-indent/src/indentblock';
-
+import HeadingButtonsUI from '@ckeditor/ckeditor5-heading/src/headingbuttonsui';
+import ParagraphButtonUI from '@ckeditor/ckeditor5-paragraph/src/paragraphbuttonui';
 //
 import MediaLibrary from '../plugins/media-library';
 
@@ -179,7 +179,8 @@ const builtinPlugins = [
 	//
 	Clipboard,
 	MediaLibrary,
-	CKFinder
+	HeadingButtonsUI,
+	ParagraphButtonUI
 ];
 
 // Editor configuration.
