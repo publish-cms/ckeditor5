@@ -91,6 +91,8 @@ import HeadingButtonsUI from '@ckeditor/ckeditor5-heading/src/headingbuttonsui';
 import ParagraphButtonUI from '@ckeditor/ckeditor5-paragraph/src/paragraphbuttonui';
 //
 import MediaLibrary from '../plugins/media-library';
+import Video from '../plugins/video/video';
+import AutoVideo from '../plugins/video/autovideo';
 
 import sanitize from 'sanitize-html';
 
@@ -102,6 +104,9 @@ class InlineEditor extends InlineEditorBase {}
 //
 import BlockToolbar from '@ckeditor/ckeditor5-ui/src/toolbar/block/blocktoolbar';
 import '../theme/theme.css';
+import VideoStyle from '../plugins/video/videostyle';
+import VideoToolbar from '../plugins/video/videotoolbar';
+import VideoCaption from '../plugins/video/videocaption';
 
 // Plugins to include in the build.
 const builtinPlugins = [
@@ -180,7 +185,13 @@ const builtinPlugins = [
 	Clipboard,
 	MediaLibrary,
 	HeadingButtonsUI,
-	ParagraphButtonUI
+	ParagraphButtonUI,
+	//
+	Video,
+	AutoVideo,
+	VideoStyle,
+	VideoToolbar,
+	VideoCaption
 ];
 
 // Editor configuration.
@@ -193,6 +204,16 @@ const defaultConfig = {
 			'|',
 			'toggleImageCaption',
 			'imageTextAlternative'
+		]
+	},
+	video: {
+		toolbar: [
+			'videoStyle:inline',
+			'videoStyle:block',
+			'videoStyle:side',
+			'|',
+			'toggleVideoCaption',
+			'videoTextAlternative'
 		]
 	},
 	table: {
