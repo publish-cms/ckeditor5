@@ -10,7 +10,7 @@ import rephraseIcon from './rephrase.svg';
 import RephraseCommand from './rephrasecommand';
 
 // css
-import './rephrase.css';
+// import './rephrase.css';
 const activeElements = [ 'paragraph', 'heading1', 'heading2', 'heading3', 'heading4', 'heading5', 'heading6' ];
 
 export default class RephraseLibrary extends Plugin {
