@@ -107,6 +107,7 @@ import '../theme/theme.css';
 import VideoStyle from '../plugins/video/videostyle';
 import VideoToolbar from '../plugins/video/videotoolbar';
 import VideoCaption from '../plugins/video/videocaption';
+import RephraseLibrary from '../plugins/rephrase';
 
 // Plugins to include in the build.
 const builtinPlugins = [
@@ -191,7 +192,9 @@ const builtinPlugins = [
 	AutoVideo,
 	VideoStyle,
 	VideoToolbar,
-	VideoCaption
+	VideoCaption,
+	//
+	RephraseLibrary
 ];
 
 // Editor configuration.

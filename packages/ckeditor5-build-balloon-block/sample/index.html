@@ -27,6 +27,8 @@
 				>.
 			</p>
 
+			<p>The <a href="../features/images/images-overview.html">Image</a> and <a href="../features/images/image-upload/image-upload.html">Image upload</a> features are enabled by default in all editor builds. However, to fully enable image upload when installing CKEditor 5 you need to configure one of the available upload adapters. Check out the <a href="../features/images/image-upload/image-upload.html">comprehensive “Image upload” guide</a> to find out the best image upload strategy for your project.</p>
+
 			<figure class="image">
 				<img src="../tests/manual/sample.jpg" alt="Autumn fields" />
 			</figure>
@@ -82,8 +84,9 @@
 				toolbar: {
 					items: [
 						'heading2',
-	          'heading3',
-	          'heading4',
+						'heading3',
+						'heading4',
+						'rephraseLibrary',
 						'|',
 						'bold',
 						'italic',
@@ -98,6 +101,8 @@
           'heading3',
           'heading4',
           '|',
+					'rephraseLibrary',
+					'|',
           'bulletedList',
           'numberedList',
           '|',
@@ -159,7 +164,22 @@
 					onError: function (error) {
 						console.log('onError', error.message);
 					}
-				}
+				},
+				rephraseLibrary: {
+					getRephrase: function (text) {
+						return new Promise(function (resolve, reject) {
+							setTimeout(function () {
+								resolve('Rephrase: ' + text);
+							}, 10000);
+						});
+					},
+					onError: function (error) {
+						console.log('onError', error.message);
+					},
+					onLoading: function () {
+						console.log('onOpen');
+					}
+				},
 			})
 				.then(editor => {
 					window.editor = editor;
