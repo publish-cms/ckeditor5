@@ -39,7 +39,6 @@ export default class RephraseCommand extends Command {
 
 		if ( !block || !model.schema.checkAttribute( block, 'rephraseLibrary' ) ) {
 			this.isEnabled = false;
-			this.onError( 'Please select a block with rephraseLibrary attribute' );
 			return;
 		}
 

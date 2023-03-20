@@ -11,7 +11,18 @@ import RephraseCommand from './rephrasecommand';
 
 // css
 // import './rephrase.css';
-const activeElements = [ 'paragraph', 'heading1', 'heading2', 'heading3', 'heading4', 'heading5', 'heading6' ];
+const activeElements = [
+	'paragraph',
+	'heading1',
+	'heading2',
+	'heading3',
+	'heading4',
+	'heading5',
+	'heading6',
+	'bulletedList',
+	'numberedList',
+	'listItem'
+];
 
 export default class RephraseLibrary extends Plugin {
 	/**
@@ -31,6 +42,8 @@ export default class RephraseLibrary extends Plugin {
 		const t = editor.t;
 
 		const config = editor.config.get( 'rephraseLibrary' ) || {};
+
+		const configActiveElements = config.activeElements || activeElements;
 
 		editor.ui.componentFactory.add( 'rephraseLibrary', locale => {
 			const command = editor.commands.get( 'rephraseLibrary' );
@@ -57,7 +70,7 @@ export default class RephraseLibrary extends Plugin {
 
 		const schema = editor.model.schema;
 
-		activeElements.forEach( elementName => {
+		configActiveElements.forEach( elementName => {
 			if ( schema.isRegistered( elementName ) ) {
 				schema.extend( elementName, { allowAttributes: 'rephraseLibrary' } );
 			}
