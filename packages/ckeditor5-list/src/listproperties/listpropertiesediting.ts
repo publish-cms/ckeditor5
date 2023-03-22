@@ -300,6 +300,9 @@ function createAttributeStrategies( enabledProperties: ListPropertiesConfig ) {
 			},
 
 			getAttributeOnUpcast( listParent ) {
+				if ( !listParent || !listParent.getStyle ) {
+					return DEFAULT_LIST_TYPE;
+				}
 				return listParent.getStyle( 'list-style-type' ) || DEFAULT_LIST_TYPE;
 			}
 		} );

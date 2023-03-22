@@ -293,6 +293,9 @@ function createAttributeStrategies( enabledProperties ) {
 			},
 
 			getAttributeOnUpcast( listParent ) {
+				if ( !listParent ) {
+					return DEFAULT_LIST_TYPE;
+				}
 				const style = listParent.getStyle( 'list-style-type' );
 
 				if ( style ) {
@@ -337,6 +340,9 @@ function createAttributeStrategies( enabledProperties ) {
 			},
 
 			getAttributeOnUpcast( listParent ) {
+				if ( !listParent || !listParent.hasAttribute ) {
+					return false;
+				}
 				return listParent.hasAttribute( 'reversed' );
 			}
 		} );
@@ -369,6 +375,9 @@ function createAttributeStrategies( enabledProperties ) {
 			},
 
 			getAttributeOnUpcast( listParent ) {
+				if ( !listParent || !listParent.hasAttribute ) {
+					return 1;
+				}
 				const startAttributeValue = listParent.getAttribute( 'start' );
 
 				return startAttributeValue >= 0 ? startAttributeValue : 1;

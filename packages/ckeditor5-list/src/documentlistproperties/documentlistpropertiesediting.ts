@@ -342,6 +342,9 @@ function createAttributeStrategies( enabledProperties: ListPropertiesConfig ) {
 			},
 
 			getAttributeOnUpcast( listParent ) {
+				if ( !listParent || !listParent.getStyle ) {
+					return DEFAULT_LIST_TYPE;
+				}
 				const style = listParent.getStyle( 'list-style-type' );
 
 				if ( style ) {
@@ -386,6 +389,9 @@ function createAttributeStrategies( enabledProperties: ListPropertiesConfig ) {
 			},
 
 			getAttributeOnUpcast( listParent ) {
+				if ( !listParent || !listParent.hasAttribute ) {
+					return false;
+				}
 				return listParent.hasAttribute( 'reversed' );
 			}
 		} );

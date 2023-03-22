@@ -289,7 +289,10 @@ function createAttributeStrategies( enabledProperties ) {
 			},
 
 			getAttributeOnUpcast( listParent ) {
-				return listParent.getStyle( 'list-style-type' ) || DEFAULT_LIST_TYPE;
+				if ( !listParent || !listParent.getStyle ) {
+					return DEFAULT_LIST_TYPE;
+				}
+				return listParent.getStyle( 'list-style-type' );
 			}
 		} );
 	}
@@ -316,6 +319,9 @@ function createAttributeStrategies( enabledProperties ) {
 			},
 
 			getAttributeOnUpcast( listParent ) {
+				if ( !listParent || !listParent.hasAttribute ) {
+					return false;
+				}
 				return listParent.hasAttribute( 'reversed' );
 			}
 		} );
@@ -343,6 +349,10 @@ function createAttributeStrategies( enabledProperties ) {
 			},
 
 			getAttributeOnUpcast( listParent ) {
+				if ( !listParent || !listParent.getAttribute ) {
+					return 1;
+				}
+
 				const startAttributeValue = listParent.getAttribute( 'start' );
 
 				return startAttributeValue >= 0 ? startAttributeValue : 1;
@@ -367,6 +377,9 @@ function upcastListItemAttributes( attributeStrategies ) {
 
 			for ( const strategy of attributeStrategies ) {
 				if ( strategy.appliesToListItem( listItem ) ) {
+					if ( !listParent ) {
+						continue;
+					}
 					const listStyle = strategy.getAttributeOnUpcast( listParent );
 					conversionApi.writer.setAttribute( strategy.attributeName, listStyle, listItem );
 				}
